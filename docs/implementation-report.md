@@ -20,7 +20,7 @@
 
 - Unit and embedded PostgreSQL integration suites: **32 passed**.
 - Browser suites: **6 passed**, **2 skipped** (one authenticated workflow per desktop/mobile project, missing live test credentials).
-- Browser coverage includes marketing interaction, calculator updates, navigation, mobile overflow, keyboard skip navigation, unconfigured installation states and homepage axe WCAG checks. Initial contrast violations were repaired and the rerun passed.
+- Browser coverage includes marketing interaction, calculator updates, navigation, mobile overflow, keyboard skip navigation, unconfigured installation states and homepage axe WCAG checks. Contrast violations were repaired and the desktop/mobile rerun passed after the redesign.
 - TypeScript strict checking, ESLint and Next.js production build passed. The checks were rerun after the multi-line document changes, and the production build passed.
 - Desktop and mobile screenshots inspected/captured locally.
 
@@ -28,9 +28,9 @@ These results do not establish hosted Supabase Auth, email delivery, actual Stri
 
 ## Remote state and remaining work
 
-- Source uploaded to `joelbaxter41-alt/routeledger`, application commit `04ea30789ef58eb082a0670f0a7fc07b5c3768d6`.
-- Vercel project `routeledger`, workspace `joel-baxter`, deployment `dpl_awv9sE32giFD4HSmnf4s8wj7VEih`: **READY**. Hosted URL: https://routeledger-joel-baxter.vercel.app . The initial build was labeled production by Vercel despite a preview request; project authentication protection remains enabled.
-- Deployed homepage, login and workspace setup pages returned HTTP 200 through authenticated Vercel access. Login and workspace correctly report missing Supabase configuration. Runtime error/fatal log lookup for this deployment returned no matching entries in the inspected 10-minute window.
+- Source uploaded to `joelbaxter41-alt/routeledger`, application commit `b08d3ecf4121098f414db115741504edfe166fbb`.
+- Vercel project `routeledger`, workspace `joel-baxter`, deployment `dpl_7mdKciYZUpyiNeSJdNMLGns3mZh7`: **READY**. Hosted URL: https://routeledger-joel-baxter.vercel.app . The initial build was labeled production by Vercel despite a preview request; project authentication protection remains enabled.
+- The redesigned homepage and SVG logo returned HTTP 200 through authenticated Vercel access; deployed HTML contains the new brand, interactive product-preview and feature-story sections. The previous deployment’s login/workspace setup states were verified; hosted authentication remains unconfigured.
 - Vercel Git linking requires a GitHub login connection in the Vercel account. The successful deployment uploaded the same tested source directly; automatic Git deployments are not yet connected.
 - Supabase project created: `ozbcpehahgagtrtcvfux` (US East). Hosted migration confirmation expired, so the hosted schema remains unapplied and application environment values are still unconfigured. See `docs/connect-supabase.md` for the setup path. Stripe and Resend remain unconfigured.
 - Configure Supabase project/auth/SMTP, apply migration, set server-only service key, configure Stripe test price/webhooks/portal, verify Resend sender and provision environment values.
