@@ -2,7 +2,7 @@
 
 ## Delivered locally
 
-- Responsive Next.js 16 App Router application, Geist/Geist Mono typography, forest-green/ivory design, desktop sidebar and mobile bottom navigation.
+- Responsive Next.js 16 App Router application, Geist/Geist Mono typography, forest-green/ivory design, light desktop sidebar and mobile bottom navigation. Added Simplify-inspired editorial marketing layout, interactive illustrative job/profit preview, geometric R SVG identity, and persisted-data list/board job views. See `docs/design-notes.md`.
 - Public landing/features/pricing/auth/recovery/legal pages and interactive illustrative profit calculator.
 - Supabase SSR auth/session refresh/callbacks and business onboarding; credentials required to exercise hosted authentication.
 - Tenant-aware database schema with RLS, explicit least-privilege grants, composite foreign keys, lifecycle constraints, immutable financial records, and audit events.
@@ -32,7 +32,7 @@ These results do not establish hosted Supabase Auth, email delivery, actual Stri
 - Vercel project `routeledger`, workspace `joel-baxter`, deployment `dpl_awv9sE32giFD4HSmnf4s8wj7VEih`: **READY**. Hosted URL: https://routeledger-joel-baxter.vercel.app . The initial build was labeled production by Vercel despite a preview request; project authentication protection remains enabled.
 - Deployed homepage, login and workspace setup pages returned HTTP 200 through authenticated Vercel access. Login and workspace correctly report missing Supabase configuration. Runtime error/fatal log lookup for this deployment returned no matching entries in the inspected 10-minute window.
 - Vercel Git linking requires a GitHub login connection in the Vercel account. The successful deployment uploaded the same tested source directly; automatic Git deployments are not yet connected.
-- Supabase is not provisioned/connected yet. See `docs/connect-supabase.md` for the exact hosted setup path. Stripe and Resend remain unconfigured.
+- Supabase project created: `ozbcpehahgagtrtcvfux` (US East). Hosted migration confirmation expired, so the hosted schema remains unapplied and application environment values are still unconfigured. See `docs/connect-supabase.md` for the setup path. Stripe and Resend remain unconfigured.
 - Configure Supabase project/auth/SMTP, apply migration, set server-only service key, configure Stripe test price/webhooks/portal, verify Resend sender and provision environment values.
 - Team features are hidden. No employee assignment, receipts, refunds/credit notes, direct invoice card collection, automated overhead allocation, fiscal-year settings, dark theme or product analytics.
 - Legal pages are explicit pre-release drafts. See README for all limits and docs/launch-checks.md for external acceptance work.

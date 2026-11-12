@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { BrandLogo } from "./brand";
 import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
@@ -14,7 +15,6 @@ import {
   ChartPie,
   Settings,
   CreditCard,
-  Route,
   ArrowUpRight,
 } from "lucide-react";
 const links = [
@@ -38,11 +38,8 @@ export function Navigation({ business }: { business: string }) {
   return (
     <>
       <aside className="sidebar">
-        <Link className="logo" href="/app">
-          <span className="logo-mark">
-            <Route size={20} />
-          </span>
-          RouteLedger
+        <Link className="logo" href="/app" aria-label="RouteLedger overview">
+          <BrandLogo compact />
         </Link>
         <div className="business">
           {business}
@@ -50,7 +47,7 @@ export function Navigation({ business }: { business: string }) {
         </div>
         <div
           className="eyebrow"
-          style={{ color: "#94ad9d", padding: "0 12px", marginBottom: 12 }}
+          style={{ padding: "0 12px", marginBottom: 12 }}
         >
           WORKSPACE
         </div>
@@ -85,7 +82,7 @@ export function Navigation({ business }: { business: string }) {
             <Link
               href="/app/billing"
               className="text-link"
-              style={{ color: "#b8d4b4", marginTop: 10 }}
+              style={{ marginTop: 10 }}
             >
               Explore Solo Pro <ArrowUpRight size={13} />
             </Link>

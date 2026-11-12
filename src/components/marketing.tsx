@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrandLogo } from "./brand";
 import {
   Route,
   ArrowUpRight,
@@ -12,15 +13,13 @@ import {
 export function MarketingNav() {
   return (
     <nav aria-label="Public navigation">
-      <Link className="logo" href="/">
-        <span className="logo-mark">
-          <Route size={19} />
-        </span>
-        RouteLedger
+      <Link className="logo" href="/" aria-label="RouteLedger home">
+        <BrandLogo />
       </Link>
       <div className="links">
         <Link href="/features">Features</Link>
         <Link href="/pricing">Pricing</Link>
+        <Link href="/#how-it-works">How it works</Link>
         <Link href="/login">Sign in</Link>
         <Link className="button primary" href="/signup">
           Start for free <ArrowUpRight size={15} />
@@ -37,7 +36,7 @@ export function MarketingFooter() {
         style={{ fontSize: 18, color: "#163f32" }}
         href="/"
       >
-        RouteLedger
+        <BrandLogo compact />
       </Link>
       <span>Run your business. Know your numbers.</span>
       <div className="actions">

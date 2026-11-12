@@ -10,6 +10,13 @@ test("marketing, calculator and navigation", async ({ page }) => {
     }),
   ).toBeVisible();
   await expect(page.getByText("Illustrative sample data")).toBeVisible();
+  await page.getByRole("tab", { name: "Profit breakdown" }).click();
+  await expect(page.getByRole("tabpanel")).toContainText("$185.00");
+  await page.getByRole("tab", { name: "Profit breakdown" }).press("ArrowLeft");
+  await expect(page.getByRole("tab", { name: "Your jobs 3" })).toHaveAttribute(
+    "aria-selected",
+    "true",
+  );
   await page.getByRole("textbox", { name: "Customer charge ($)" }).fill("300");
   await page.getByRole("textbox", { name: "Total job cost ($)" }).fill("100");
   await expect(page.getByText("$200.00", { exact: true })).toBeVisible();

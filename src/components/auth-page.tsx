@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { ArrowUpRight, Route } from "lucide-react";
+import { BrandLogo } from "./brand";
+import { ArrowUpRight } from "lucide-react";
 import { authenticate, resetPassword } from "@/app/actions";
 import { Field, Feedback } from "./forms";
 import { Submit } from "./submit";
@@ -26,11 +27,8 @@ export async function AuthPage({
   return (
     <main id="main" className="auth">
       <section className="auth-story">
-        <Link href="/" className="logo">
-          <span className="logo-mark">
-            <Route size={19} />
-          </span>
-          RouteLedger
+        <Link href="/" className="logo" aria-label="RouteLedger home">
+          <BrandLogo inverse />
         </Link>
         <div>
           <span className="eyebrow" style={{ color: "#a5c5a2" }}>

@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { ArrowUpRight, ArrowRight, Check, TrendingUp } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Check } from "lucide-react";
 import {
   MarketingNav,
   MarketingFooter,
-  FeatureGrid,
   PricingCards,
 } from "@/components/marketing";
+import { FeatureStories } from "@/components/feature-stories";
+import { ProductPreview } from "@/components/product-preview";
 import { ProfitPreview } from "@/components/profit-preview";
 export default function Home() {
   return (
@@ -13,11 +14,14 @@ export default function Home() {
       <MarketingNav />
       <main id="main">
         <section className="hero">
-          <span className="eyebrow">FOR THE BUSINESS YOU’RE BUILDING</span>
+          <span className="hero-kicker">
+            <span />
+            Built for independent service businesses
+          </span>
           <h1>
             Know exactly what
             <br />
-            every job <span style={{ color: "#258657" }}>earns you.</span>
+            every job <em>earns you.</em>
           </h1>
           <p>
             Manage jobs, track expenses, and understand your profitability.
@@ -46,61 +50,18 @@ export default function Home() {
             <span>No credit card required</span>
             <span>Built for your working day</span>
           </div>
-          <div className="hero-preview">
-            <div className="section-head">
-              <div>
-                <div className="eyebrow">ROUTELEDGER / OVERVIEW</div>
-                <h2 style={{ margin: "10px 0 0" }}>
-                  Good work. Clear numbers.
-                </h2>
-              </div>
-              <span className="badge">Illustrative sample data</span>
-            </div>
-            <div
-              className="stats"
-              style={{ gridTemplateColumns: "repeat(3,1fr)", marginBottom: 0 }}
-            >
-              {[
-                ["Job revenue", "$4,800.00", "24 completed jobs"],
-                ["Recorded costs", "$1,824.00", "Including labor allowance"],
-                [
-                  "Est. operating profit",
-                  "$2,976.00",
-                  "Before taxes & missing costs",
-                ],
-              ].map(([label, v, note], i) => (
-                <div
-                  key={label}
-                  style={{
-                    padding: "22px 15px",
-                    background: i === 2 ? "#edf2e9" : "#fafbf8",
-                    borderRadius: 7,
-                  }}
-                >
-                  <div className="stat-label">{label}</div>
-                  <div
-                    className={`stat-value mono ${i === 2 ? "positive" : ""}`}
-                    style={{ fontSize: "clamp(16px,2.3vw,28px)" }}
-                  >
-                    {v}
-                  </div>
-                  <div className="stat-note">{note}</div>
-                </div>
-              ))}
-            </div>
-            <div className="detail-row" style={{ marginTop: 16 }}>
-              <span style={{ display: "flex", gap: 10, alignItems: "center" }}>
-                <TrendingUp size={17} color="#258657" />A full schedule is only
-                half the story.
-              </span>
-              <span className="positive" style={{ fontSize: 12 }}>
-                Know what you keep.
-              </span>
-            </div>
-          </div>
+          <ProductPreview />
         </section>
-        <section className="marketing-section">
-          <div style={{ maxWidth: 590, marginBottom: 32 }}>
+        <div className="trade-strip">
+          <span>Made for the work you do</span>
+          <strong>Lawn care</strong>
+          <strong>Landscaping</strong>
+          <strong>Pressure washing</strong>
+          <strong>Snow removal</strong>
+          <strong>Property care</strong>
+        </div>
+        <section className="marketing-section" id="how-it-works">
+          <div className="section-intro">
             <span className="eyebrow">LESS GUESSWORK. MORE CONFIDENCE.</span>
             <h1 style={{ marginTop: 16 }}>
               You do the work.
@@ -112,9 +73,9 @@ export default function Home() {
               of your business in order.
             </p>
           </div>
-          <FeatureGrid />
+          <FeatureStories />
         </section>
-        <section className="marketing-section">
+        <section className="marketing-section" id="profit-calculator">
           <div className="card" style={{ padding: "clamp(22px,4vw,48px)" }}>
             <span className="eyebrow">TRY THE PROFIT-FIRST APPROACH</span>
             <h1 style={{ marginTop: 15 }}>What does a job really earn?</h1>
@@ -125,7 +86,10 @@ export default function Home() {
             <ProfitPreview />
           </div>
         </section>
-        <section className="marketing-section" style={{ textAlign: "center" }}>
+        <section
+          className="marketing-section pricing-section"
+          style={{ textAlign: "center" }}
+        >
           <span className="eyebrow">STRAIGHTFORWARD PLANS</span>
           <h1 style={{ marginTop: 15 }}>
             Start small. Build something strong.

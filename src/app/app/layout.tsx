@@ -2,7 +2,7 @@ import { context } from "@/lib/context";
 import { configured } from "@/lib/supabase";
 import { Navigation } from "@/components/navigation";
 import { logout } from "@/app/actions";
-import { Search, LogOut } from "lucide-react";
+import { Search, LogOut, ChevronRight } from "lucide-react";
 import Link from "next/link";
 export const dynamic = "force-dynamic";
 export default async function Layout({
@@ -29,12 +29,10 @@ export default async function Layout({
       <Navigation business={organization.name} />
       <div className="main-column">
         <header className="topbar">
-          <div>
-            <span className="eyebrow">YOUR BUSINESS, IN FOCUS</span>
-            <br />
-            <small className="muted">
-              Run your business. Know your numbers.
-            </small>
+          <div className="workspace-breadcrumb">
+            <span>{organization.name}</span>
+            <ChevronRight size={13} />
+            <span>Workspace</span>
           </div>
           <form action="/app/search" className="search" role="search">
             <Search size={16} />
@@ -47,8 +45,8 @@ export default async function Layout({
             />
           </form>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <span className="muted" style={{ fontSize: 12 }}>
-              {user.email?.split("@")[0]}
+            <span className="account-avatar" title={user.email}>
+              {user.email?.slice(0, 2).toUpperCase()}
             </span>
             <form action={logout}>
               <button className="button ghost" aria-label="Sign out">

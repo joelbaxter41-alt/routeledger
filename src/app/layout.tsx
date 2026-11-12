@@ -6,6 +6,7 @@ import "@fontsource/geist/latin-700.css";
 import "@fontsource/geist-mono/latin-400.css";
 import "@fontsource/geist-mono/latin-600.css";
 import "./globals.css";
+import "./redesign.css";
 export const metadata: Metadata = {
   title: {
     default: "RouteLedger — Run your business. Know your numbers.",

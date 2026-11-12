@@ -5,13 +5,13 @@ This is the next required setup step. Creating a Vercel deployment does not crea
 ## Create and connect the project
 
 1. Open https://supabase.com/dashboard and sign in with your intended account.
-2. Create a new project named **RouteLedger** in your organization. Choose a region appropriate for your customers; the Vercel application currently runs in US East. Select the free plan if it meets your needs and is available. Save the database password privately.
+2. The **RouteLedger** project has already been created in your chosen organization, US East. Open https://supabase.com/dashboard/project/ozbcpehahgagtrtcvfux . Do not create a duplicate project.
 3. Wait for the project to become ready. Open its Connect/API settings.
 4. Open Vercel environment settings: https://vercel.com/joel-baxter/routeledger/settings/environment-variables . Add the following for the environments you intend to use:
 
 | Environment variable | Supabase value |
 | --- | --- |
-| `NEXT_PUBLIC_SUPABASE_URL` | Project URL (`https://PROJECT_REF.supabase.co`) |
+| `NEXT_PUBLIC_SUPABASE_URL` | `https://ozbcpehahgagtrtcvfux.supabase.co` |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Publishable key (or legacy anon key) |
 | `SUPABASE_SERVICE_ROLE_KEY` | Legacy service-role key, stored as a private server-only variable |
 | `NEXT_PUBLIC_APP_URL` | `https://routeledger-joel-baxter.vercel.app` |
