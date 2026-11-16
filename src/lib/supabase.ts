@@ -1,4 +1,5 @@
 import "server-only";
+import { supabaseServerKey } from "./server-key";
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 export const configured = () =>
@@ -6,6 +7,9 @@ export const configured = () =>
     process.env.NEXT_PUBLIC_SUPABASE_URL &&
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY,
   );
+export const authConfigured = () =>
+  configured() && Boolean(supabaseServerKey());
+
 export async function database() {
   if (!configured())
     throw new Error(

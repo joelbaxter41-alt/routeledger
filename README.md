@@ -8,7 +8,7 @@ This is a runnable first release, **not a verified production launch**. Live Sup
 
 ## Prerequisites
 
-- Node.js 22.13+ (verified here using Node 24.22.1), npm, and a Supabase development project.
+- Node.js 24.x (verified here using Node 24.22.1), npm, and a Supabase development project.
 - A Vercel account for hosting; Stripe test account and verified Resend sender to exercise paid/email flows.
 - `npm ci` installs the exact dependency versions in `package-lock.json`. Current installation uses Next.js 16.4.6, React 19.3.1, TypeScript 6.0.3, Supabase SSR, Tailwind 4, Radix/shadcn-compatible primitives, Lucide, Recharts, React Hook Form, and Zod.
 
@@ -27,7 +27,7 @@ If the home directory is unavailable, use `npm ci --cache ./work/npm-cache`. Fil
 | --- | --- | --- |
 | `NEXT_PUBLIC_SUPABASE_URL` | Supabase project URL | Auth and workspace |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Public publishable/legacy anon key | Auth and RLS queries |
-| `SUPABASE_SERVICE_ROLE_KEY` | Private server-only key | Persistent auth rate limits, billing webhooks, recurring cron, email rate limits |
+| `SUPABASE_SECRET_KEY` (or legacy `SUPABASE_SERVICE_ROLE_KEY`) | Private server-only key | Persistent auth rate limits, billing webhooks, recurring cron, email rate limits |
 | `NEXT_PUBLIC_APP_URL` | Canonical application origin | Auth callbacks, checkout and billing portal |
 | `STRIPE_SECRET_KEY` | Stripe test/live server key | Checkout, portal, webhook reconciliation |
 | `STRIPE_WEBHOOK_SECRET` | Signing secret for the specific endpoint | Stripe webhooks |
@@ -36,7 +36,7 @@ If the home directory is unavailable, use `npm ci --cache ./work/npm-cache`. Fil
 | `EMAIL_FROM` | Verified sender, e.g. your verified billing address | Invoice emails |
 | `CRON_SECRET` | High-entropy private bearer token | Recurring scheduler |
 
-The service-role client exists only in `src/lib/admin.ts` and is never used for customer/job queries. Ordinary business actions use the caller's authenticated Supabase client and RLS. Auth rate limiting deliberately fails closed without server credentials.
+The privileged client exists only in `src/lib/admin.ts` and is never used for customer/job queries. Ordinary business actions use the caller's authenticated Supabase client and RLS. Auth rate limiting deliberately fails closed without server credentials. Public auth pages show a temporary setup message until both public and private Supabase settings exist. Modern `sb_secret_...` keys are supported; legacy service-role keys remain compatible.
 
 ## Supabase setup and migration
 
@@ -60,6 +60,12 @@ node --env-file=.env.local scripts/seed.mjs
 ```
 
 The script requires a localhost app URL and an empty workspace. It creates clearly labeled sample records through the real API and does not grant Pro. Verify the Supabase project is a disposable development project; the localhost check cannot identify a mistakenly configured remote production database. Seeded data must never be presented as production results.
+
+## Non-Stripe connection checks
+
+Run `npm run check:setup` after saving your local environment settings. It uses `.env.local` when present and otherwise the process environment; it does not pull Vercel secrets. The check verifies read-only database access, foundation tables and the multi-line document function without exposing key values or modifying business data. Stripe is excluded. Passing this check is not evidence of inbox delivery, legal completeness, backups or browser workflow success.
+
+Current hosted setup still needs the Supabase migration approval, a private server key, allowed authentication redirects and a redeployment. Configure `SUPABASE_SECRET_KEY` directly in Vercel; never paste it into chat. Configure Supabase Site URL as your application origin and allow both `/auth/callback` and `/auth/callback?next=/reset-password` on that origin.
 
 ## Development and verification
 

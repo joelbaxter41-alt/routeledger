@@ -52,7 +52,7 @@ test("unconfigured installation reports setup without fake workspace", async ({
   );
   await page.goto("/login");
   await expect(
-    page.getByText("Authentication is awaiting Supabase configuration.", {
+    page.getByText("Account setup is being finalized.", {
       exact: false,
     }),
   ).toBeVisible();

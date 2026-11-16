@@ -1,16 +1,13 @@
 import "server-only";
 import { createClient } from "@supabase/supabase-js";
+import { supabaseServerKey } from "./server-key";
 export function adminDatabase() {
-  if (
-    !process.env.SUPABASE_SERVICE_ROLE_KEY ||
-    !process.env.NEXT_PUBLIC_SUPABASE_URL
-  )
+  const key = supabaseServerKey();
+  if (!key || !process.env.NEXT_PUBLIC_SUPABASE_URL)
     throw new Error("Server integration credentials are not configured.");
-  return createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_ROLE_KEY,
-    { auth: { persistSession: false, autoRefreshToken: false } },
-  );
+  return createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, key, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
 }
 export async function rateLimit(key: string, limit = 10, seconds = 60) {
   const db = adminDatabase();

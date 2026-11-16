@@ -13,10 +13,10 @@ This is the next required setup step. Creating a Vercel deployment does not crea
 | --- | --- |
 | `NEXT_PUBLIC_SUPABASE_URL` | `https://ozbcpehahgagtrtcvfux.supabase.co` |
 | `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | Publishable key (or legacy anon key) |
-| `SUPABASE_SERVICE_ROLE_KEY` | Legacy service-role key, stored as a private server-only variable |
+| `SUPABASE_SECRET_KEY` | Modern secret key (`sb_secret_...`), stored as a private server-only variable; legacy `SUPABASE_SERVICE_ROLE_KEY` is also supported |
 | `NEXT_PUBLIC_APP_URL` | `https://routeledger-joel-baxter.vercel.app` |
 
-The service-role key must never use a `NEXT_PUBLIC_` prefix. Do not put it in GitHub, screenshots, or chat. If your project only displays newer secret keys, open the legacy API key settings to get the service-role key expected by this release. Authentication request rate limits use a private server-side client and fail closed if that key is missing.
+The server secret key must never use a `NEXT_PUBLIC_` prefix. Do not put it in GitHub, screenshots, or chat. Use the modern secret key from your Supabase API key settings. Existing legacy service-role keys also work, but you do not need to generate a legacy key. Authentication request rate limits use a private server-side client and fail closed if that key is missing.
 
 ## Apply the schema
 

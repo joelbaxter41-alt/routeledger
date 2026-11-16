@@ -38,3 +38,12 @@ These results do not establish hosted Supabase Auth, email delivery, actual Stri
 - Legal pages are explicit pre-release drafts. See README for all limits and docs/launch-checks.md for external acceptance work.
 
 The release is prepared for configuration and review; it is **not production-verified**.
+
+## Non-Stripe launch preparation
+
+- Public Supabase project URL, publishable key and canonical application URL were saved to the correct Vercel project for production, preview and development. No Stripe environment settings were changed.
+- Added modern server secret-key support (`SUPABASE_SECRET_KEY`), retained legacy compatibility, and kept authentication forms closed while required server credentials are missing.
+- Pinned dependencies to their tested lockfile versions and Node.js to 24.x. Added a read-only `npm run check:setup` command that reports missing configuration names without exposing values.
+- Hosted migration approval expired again; migration history and public schema were still empty at the start of this session. Private server key and auth redirect settings require account-owner configuration through the provider dashboards.
+- No payment entitlement was fabricated or unlocked. Stripe remains excluded. Public support/operator details and email-provider credentials remain required before launch.
+- Local verification: build, lint, strict type checks, 32 unit/database tests and 6 public desktop/mobile browser tests passed; the 2 authenticated workflow runs remain skipped pending external setup. The local setup checker correctly failed with missing environment-setting names because no local credentials were supplied.

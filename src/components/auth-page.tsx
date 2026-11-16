@@ -4,7 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { authenticate, resetPassword } from "@/app/actions";
 import { Field, Feedback } from "./forms";
 import { Submit } from "./submit";
-import { configured } from "@/lib/supabase";
+import { authConfigured } from "@/lib/supabase";
 export async function AuthPage({
   mode,
   params,
@@ -66,11 +66,10 @@ export async function AuthPage({
               If this email has an account, a recovery link is on its way.
             </div>
           )}
-          {!configured() ? (
+          {!authConfigured() ? (
             <div className="alert error">
-              Authentication is awaiting Supabase configuration. Add the
-              environment variables and apply the database migration described
-              in the README.
+              Account setup is being finalized. Sign-in and registration will be
+              available shortly.
             </div>
           ) : (
             <form
